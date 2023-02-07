@@ -1,0 +1,10 @@
+.Header {
+  background-color: #282c34;
+  color: white;
+}
+
+.Header-logo {
+  float: left;
+  margin-right: 10px;
+  pointer-events: none;
+}
