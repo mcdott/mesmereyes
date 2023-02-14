@@ -1,6 +1,9 @@
+import { Outlet } from "react-router-dom";
 import React from "react";
 import Header from "./Header";
 import SketchSlider from "./SketchSlider";
+import "./App.css";
+
 const App = () => {
   const slides = [
     {
