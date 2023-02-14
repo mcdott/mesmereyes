@@ -1,9 +1,9 @@
 // SketchSlider.js
 import React from "react";
 import { useState } from "react";
-import "./SketchSlider.css";
+import "./DoodleSlider.css";
 
-const SketchSlider = ({ slides }) => {
+const DoodleSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -51,4 +51,4 @@ const SketchSlider = ({ slides }) => {
   );
 };
 
-export default SketchSlider;
+export default DoodleSlider;
