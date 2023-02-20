@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import DoodleSlider from "./DoodleSlider";
 import About from "./About";
+import DoodlesList from "./DoodlesList";
 import "./App.css";
-import slides from "./slides-data.json";
+import doodles from "./doodles-data.json";
 
 const App = () => {
   const containerStyles = {
@@ -18,8 +18,9 @@ const App = () => {
       <Header />
       <div style={containerStyles}>
         <Routes>
-          <Route path='/' element={<DoodleSlider slides={slides} />} />
+          <Route path='/' element={<DoodleSlider slides={doodles} />} />
           <Route path='/about' element={<About />} />
+          <Route path='/doodles' element={<DoodlesList />} />
         </Routes>
       </div>
     </div>
