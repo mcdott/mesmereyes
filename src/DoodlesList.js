@@ -5,6 +5,7 @@ function DoodlesList() {
   const [visualComplexityFilter, setVisualComplexityFilter] = useState("ALL");
   const [visualContrastFilter, setVisualContrastFilter] = useState("ALL");
   const [doodles, setDoodles] = useState([]);
+  const [fullScreenDoodle, setFullScreenDoodle] = useState(null);
 
   useEffect(() => {
     // Get the doodles data and set it to the component state
@@ -25,8 +26,22 @@ function DoodlesList() {
     );
   }
 
+  const handleTitleClick = (doodle) => {
+    setFullScreenDoodle(doodle);
+  };
+
+  const handleCloseFullScreen = () => {
+    setFullScreenDoodle(null);
+  };
+
   return (
     <div>
+      {fullScreenDoodle && (
+        <div className='full-screen'>
+          <button onClick={handleCloseFullScreen}>Close</button>
+          <iframe src={fullScreenDoodle.url} title={fullScreenDoodle.title} />
+        </div>
+      )}
       <div className='filter-container'>
         <div className='filter-menu'>
           <label>
@@ -59,16 +74,27 @@ function DoodlesList() {
           </label>
         </div>
       </div>
+      {fullScreenDoodle && (
+        <div className='full-screen'>
+          <button onClick={handleCloseFullScreen}>Close</button>
+          <iframe src={fullScreenDoodle.url} title={fullScreenDoodle.title} />
+        </div>
+      )}
       <div className='doodles'>
         {filteredDoodles.map((doodle, index) => (
           <div key={index}>
-            <h2>{doodle.title}</h2>
+            <h2
+              onClick={() => handleTitleClick(doodle)}
+              className='doodle-title'
+            >
+              {doodle.title} (Click to view in full screen)
+            </h2>
             <iframe
               src={doodle.url}
               title={doodle.title}
               width='100%'
               height='100%'
-            ></iframe>
+            />
           </div>
         ))}
       </div>
