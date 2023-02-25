@@ -10,6 +10,12 @@
   border: none;
 }
 
+.doodles img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
 @media screen and (max-width: 768px) {
   .doodles {
     grid-template-columns: repeat(2, 1fr);
@@ -55,8 +61,8 @@
 }
 
 .full-screen iframe {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
 }
 
 .full-screen button {

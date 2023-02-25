@@ -17,10 +17,7 @@ function Header() {
             <NavLink to='/about'>About</NavLink>
           </li>
           <li>
-            <NavLink to='/signup'>Sign Up</NavLink>
-          </li>
-          <li>
-            <NavLink to='/signin'>Sign In</NavLink>
+            <NavLink to='/full_screen_playlist'>Playlist</NavLink>
           </li>
         </ul>
       </nav>
