@@ -1,0 +1,48 @@
+/* Cover the sketch banner with an overlay */
+.overlayStyles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 101%;
+  height: 7%;
+  background: #282c34;
+  z-index: 1;
+}
+
+.rightArrowStyles {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: -32px;
+  font-size: 45px;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.leftArrowStyles {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: -32px;
+  font-size: 45px;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.sliderStyles {
+  position: relative;
+  height: 100%;
+}
+
+.dotsContainerStyles {
+  display: flex;
+  justify-content: center;
+}
+
+.dotStyle {
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 20px;
+}
