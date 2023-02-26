@@ -1,21 +1,22 @@
+import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./Header";
-import PlaylistSlider from "./PlaylistSlider";
+import SamplerSlider from "./SamplerSlider";
 import About from "./About";
 import DoodlesList from "./DoodlesList";
 import "./App.css";
 import doodles from "./doodles-data.json";
-import FullScreenPlaylist from "./FullScreenPlaylist";
-
-const homePlaylist = doodles.slice(0, 3);
+import PlaylistSlider from "./PlaylistSlider";
 
 const App = () => {
+  const sampler = doodles.slice(0, 3);
   const location = useLocation();
-  const isFullScreenPlaylist = location.pathname === "/full_screen_playlist";
+  const isPlaylistSlider = location.pathname === "/full_screen_playlist";
+  const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (
     <div className='App'>
-      {!isFullScreenPlaylist && <Header />}
+      {!isPlaylistSlider && <Header />}
       <div>
         <Routes>
           <Route
@@ -24,15 +25,30 @@ const App = () => {
               <div
                 style={{ width: "800px", height: "800px", margin: "0 auto" }}
               >
-                <PlaylistSlider slides={homePlaylist} />
+                <SamplerSlider slides={sampler} />
               </div>
             }
           />
           <Route path='/about' element={<About />} />
-          <Route path='/doodles' element={<DoodlesList />} />
+          <Route
+            path='/doodles'
+            element={
+              <DoodlesList
+                selectedDoodles={selectedDoodles}
+                setSelectedDoodles={setSelectedDoodles}
+              />
+            }
+          />
+
           <Route
             path='/full_screen_playlist'
-            element={<FullScreenPlaylist slides={homePlaylist} />}
+            element={
+              <PlaylistSlider
+                slides={selectedDoodles}
+                selectedDoodles={selectedDoodles}
+                setSelectedDoodles={setSelectedDoodles}
+              />
+            }
           />
         </Routes>
       </div>

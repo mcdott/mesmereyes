@@ -11,10 +11,10 @@ function Header() {
             <NavLink to='/'>Home</NavLink>
           </li>
           <li>
-            <NavLink to='/doodles'>Doodles</NavLink>
+            <NavLink to='/about'>About</NavLink>
           </li>
           <li>
-            <NavLink to='/about'>About</NavLink>
+            <NavLink to='/doodles'>Doodles</NavLink>
           </li>
           <li>
             <NavLink to='/full_screen_playlist'>Playlist</NavLink>

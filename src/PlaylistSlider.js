@@ -1,10 +1,26 @@
-// SketchSlider.js
-import React from "react";
-import { useState } from "react";
-import "./PlaylistSlider.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import FullScreenIframe from "./FullScreenIframe";
 
-const PlaylistSlider = ({ slides }) => {
+const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isFullScreen) {
+        const iframe = document.getElementById("fullscreen-iframe");
+        iframe.width = window.innerWidth;
+        iframe.height = window.innerHeight;
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isFullScreen]);
+
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
@@ -19,35 +35,65 @@ const PlaylistSlider = ({ slides }) => {
     setCurrentIndex(slideIndex);
   };
 
+  const handleFullScreen = () => {
+    const elem = document.documentElement;
+    elem.requestFullscreen();
+    setIsFullScreen(true);
+  };
+
+  const handleExitFullScreen = () => {
+    document.exitFullscreen();
+    setIsFullScreen(false);
+  };
+
+  const handleBackToDoodles = () => {
+    navigate("/doodles");
+  };
+
+  const handleDeleteFromPlaylist = (doodle) => {
+    const newSelectedDoodles = selectedDoodles.filter(
+      (selectedDoodle) => selectedDoodle !== doodle
+    );
+    setSelectedDoodles(newSelectedDoodles);
+  };
+
   return (
-    <div className='sliderStyles'>
-      <div>
-        <div onClick={goToPrevious} className='leftArrowStyles'>
-          ❰
+    <>
+      {!isFullScreen && (
+        <div>
+          <button onClick={handleBackToDoodles}>Back to Doodles</button>
+          <button onClick={handleFullScreen}>Enter Full Screen</button>
         </div>
-        <div onClick={goToNext} className='rightArrowStyles'>
-          ❱
-        </div>
-      </div>
-      <div className='overlayStyles'></div>
-      <iframe
-        title={slides[currentIndex].title}
-        src={slides[currentIndex].url_embed}
-        width='100%'
-        height='100%'
-      />
-      <div className='dotsContainerStyles'>
-        {slides.map((slide, slideIndex) => (
-          <div
-            className='dotStyle'
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-          >
-            ●
+      )}
+      <div className='full-screen-slider'>
+        <div className='slider-container'>
+          <div className='sliderStyles'>
+            <div style={{ position: "relative", zIndex: "2" }}>
+              <FullScreenIframe
+                url={slides[currentIndex].url_full_screen}
+                goToPrevious={goToPrevious}
+                goToNext={goToNext}
+              />
+            </div>
           </div>
-        ))}
+        </div>
+        <div className='playlist'>
+          {selectedDoodles.map((doodle, index) => (
+            <div key={index} className='playlist-item'>
+              <button
+                onClick={() => {
+                  handleDeleteFromPlaylist(doodle);
+                }}
+              >
+                Delete from Playlist
+              </button>
+              <img src={doodle.thumbnail_url} alt={doodle.title} />
+              <div className='playlist-item-title'>{doodle.title}</div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
