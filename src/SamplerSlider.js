@@ -29,7 +29,7 @@ const SamplerSlider = ({ slides }) => {
           ❱
         </div>
       </div>
-      <div className='overlayStyles'></div>
+      {/* <div className='overlayStyles'></div> */}
       <iframe
         title={slides[currentIndex].title}
         src={slides[currentIndex].url_embed}

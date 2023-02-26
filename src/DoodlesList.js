@@ -95,17 +95,19 @@ function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
           />
         </div>
       )}
-      <div className='doodles'>
-        {filteredDoodles.map((doodle, index) => (
-          <Doodle
-            key={index}
-            doodle={doodle}
-            onTitleClick={handleTitleClick}
-            onAddToPlaylistClick={handleAddToPlaylist}
-            onDeleteFromPlaylistClick={handleDeleteFromPlaylist}
-            selectedDoodles={selectedDoodles}
-          />
-        ))}
+      <div className='doodles-container'>
+        <div className='doodles'>
+          {filteredDoodles.map((doodle, index) => (
+            <Doodle
+              key={index}
+              doodle={doodle}
+              onTitleClick={handleTitleClick}
+              onAddToPlaylistClick={handleAddToPlaylist}
+              onDeleteFromPlaylistClick={handleDeleteFromPlaylist}
+              selectedDoodles={selectedDoodles}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
