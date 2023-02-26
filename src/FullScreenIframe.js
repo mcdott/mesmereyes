@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const FullScreenIframe = ({ url }) => {
+const FullScreenIframe = ({ url, goToPrevious, goToNext }) => {
   useEffect(() => {
     const handleResize = () => {
       const iframe = document.getElementById("fullscreen-iframe");
@@ -17,13 +17,28 @@ const FullScreenIframe = ({ url }) => {
   }, []);
 
   return (
-    <iframe
-      id='fullscreen-iframe'
-      title='full screen'
-      src={url}
-      style={{ border: "none" }}
-    />
+    <div style={{ position: "relative" }}>
+      <iframe
+        id='fullscreen-iframe'
+        title='full screen'
+        src={url}
+        style={{ border: "none" }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
+      >
+        <div onClick={goToPrevious} className='leftArrowStyles'>
+          ❰
+        </div>
+        <div onClick={goToNext} className='rightArrowStyles'>
+          ❱
+        </div>
+      </div>
+    </div>
   );
 };
-
 export default FullScreenIframe;

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./DoodlesList.css";
+import Doodle from "./Doodle";
 
-function DoodlesList() {
+function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
   const [visualComplexityFilter, setVisualComplexityFilter] = useState("ALL");
   const [visualContrastFilter, setVisualContrastFilter] = useState("ALL");
   const [doodles, setDoodles] = useState([]);
@@ -32,6 +33,17 @@ function DoodlesList() {
 
   const handleCloseFullScreen = () => {
     setFullScreenDoodle(null);
+  };
+
+  const handleAddToPlaylist = (doodle) => {
+    setSelectedDoodles([...selectedDoodles, doodle]);
+  };
+
+  const handleDeleteFromPlaylist = (doodle) => {
+    const newSelectedDoodles = selectedDoodles.filter(
+      (selectedDoodle) => selectedDoodle !== doodle
+    );
+    setSelectedDoodles(newSelectedDoodles);
   };
 
   return (
@@ -85,37 +97,16 @@ function DoodlesList() {
       )}
       <div className='doodles'>
         {filteredDoodles.map((doodle, index) => (
-          <div key={index}>
-            <h2
-              onClick={() => handleTitleClick(doodle)}
-              className='doodle-title'
-            >
-              {doodle.title}
-            </h2>
-            <img src={doodle.thumbnail} alt={doodle.title} />
-          </div>
+          <Doodle
+            key={index}
+            doodle={doodle}
+            onTitleClick={handleTitleClick}
+            onAddToPlaylistClick={handleAddToPlaylist}
+            onDeleteFromPlaylistClick={handleDeleteFromPlaylist}
+            selectedDoodles={selectedDoodles}
+          />
         ))}
       </div>
-
-      {/* {fullScreenDoodle && (
-        <div className='full-screen'>
-          <button onClick={handleCloseFullScreen}>Close</button>
-          <iframe src={fullScreenDoodle.url} title={fullScreenDoodle.title} />
-        </div>
-      )}
-      <div className='doodles'>
-        {filteredDoodles.map((doodle, index) => (
-          <div key={index}>
-            <h2
-              onClick={() => handleTitleClick(doodle)}
-              className='doodle-title'
-            >
-              {doodle.title} (Click to view in full screen)
-            </h2>
-            <img src={doodle.thumbnail} alt={doodle.title} />
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }
