@@ -1,43 +1,36 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./Doodle.css";
 
-const Doodle = ({
+function Doodle({
   doodle,
   onTitleClick,
   onAddToPlaylistClick,
   onDeleteFromPlaylistClick,
   selectedDoodles,
-}) => {
-  const isDoodleSelected = selectedDoodles.includes(doodle);
-
+}) {
   return (
-    <div className='doodle'>
-      <h2 onClick={() => onTitleClick(doodle)} className='doodle-title'>
-        {doodle.title}
-      </h2>
-      <img src={doodle.thumbnail} alt={doodle.title} />
-      {!isDoodleSelected && (
-        <button onClick={() => onAddToPlaylistClick(doodle)}>
-          Add to Playlist
-        </button>
-      )}
-      {isDoodleSelected && (
-        <button onClick={() => onDeleteFromPlaylistClick(doodle)}>
-          Delete from Playlist
-        </button>
-      )}
+    <div className='doodle-card'>
+      <div className='doodle-iframe'>
+        <iframe src={doodle.url_embed} title={doodle.title}></iframe>
+      </div>
+
+      <div className='doodle-info'>
+        <h3 className='doodle-title' onClick={() => onTitleClick(doodle)}>
+          {doodle.title}
+        </h3>
+        <div className='doodle-actions'>
+          {selectedDoodles.includes(doodle) ? (
+            <button onClick={() => onDeleteFromPlaylistClick(doodle)}>
+              Remove from playlist
+            </button>
+          ) : (
+            <button onClick={() => onAddToPlaylistClick(doodle)}>
+              Add to playlist
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
-};
-
-Doodle.propTypes = {
-  doodle: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-  }).isRequired,
-  onTitleClick: PropTypes.func.isRequired,
-  onAddToPlaylistClick: PropTypes.func.isRequired,
-};
+}
 
 export default Doodle;

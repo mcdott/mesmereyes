@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./Header";
+import Sidebar from "./Sidebar";
 import SamplerSlider from "./SamplerSlider";
 import About from "./About";
 import DoodlesList from "./DoodlesList";
-import "./App.css";
 import doodles from "./doodles-data.json";
 import PlaylistSlider from "./PlaylistSlider";
 
@@ -15,42 +15,45 @@ const App = () => {
   const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (
-    <div className='App'>
-      {!isPlaylistSlider && <Header />}
-      <div>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <div
-                style={{ width: "800px", height: "800px", margin: "0 auto" }}
-              >
-                <SamplerSlider slides={sampler} />
-              </div>
-            }
-          />
-          <Route path='/about' element={<About />} />
-          <Route
-            path='/doodles'
-            element={
-              <DoodlesList
-                selectedDoodles={selectedDoodles}
-                setSelectedDoodles={setSelectedDoodles}
-              />
-            }
-          />
-
-          <Route
-            path='/full_screen_playlist'
-            element={
-              <PlaylistSlider
-                slides={selectedDoodles}
-                selectedDoodles={selectedDoodles}
-                setSelectedDoodles={setSelectedDoodles}
-              />
-            }
-          />
-        </Routes>
+    <div style={{ backgroundColor: "#282c34" }}>
+      <Header />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {location.pathname === "/" && (
+          <div
+            style={{ display: "flex", alignItems: "stretch", margin: "0 20px" }}
+          >
+            <div style={{ width: "200px", height: "100%" }}>
+              <Sidebar />
+            </div>
+            <div style={{ height: "800px", width: "800px" }}>
+              <SamplerSlider slides={sampler} />
+            </div>
+          </div>
+        )}
+        <div style={{ overflow: "auto", height: "100%" }}>
+          <Routes>
+            <Route path='/about' element={<About />} />
+            <Route
+              path='/doodles'
+              element={
+                <DoodlesList
+                  selectedDoodles={selectedDoodles}
+                  setSelectedDoodles={setSelectedDoodles}
+                />
+              }
+            />
+            <Route
+              path='/full_screen_playlist'
+              element={
+                <PlaylistSlider
+                  slides={selectedDoodles}
+                  selectedDoodles={selectedDoodles}
+                  setSelectedDoodles={setSelectedDoodles}
+                />
+              }
+            />
+          </Routes>
+        </div>
       </div>
     </div>
   );

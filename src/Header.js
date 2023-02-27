@@ -27,8 +27,8 @@ function Header() {
         alt='logo'
         style={{ width: "100px", height: "100px" }}
       />
-      <h1>Mesmereyes Accessible Gallery of Interactive Creations</h1>
-      <h2>art to play with</h2>
+      <h1>Mesmereyes</h1>
+      <h2>Accessible Gallery of Interactive Creations</h2>
     </header>
   );
 }
