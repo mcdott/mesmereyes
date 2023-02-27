@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./DoodlesList.css";
 import Doodle from "./Doodle";
 
 function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
@@ -49,47 +48,61 @@ function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
   return (
     <div>
       {fullScreenDoodle && (
-        <div className='full-screen'>
-          <button onClick={handleCloseFullScreen}>Close</button>
+        <div className='fixed top-0 left-0 w-full h-full bg-gray-800 flex flex-col items-center justify-center'>
+          <button
+            className='bg-white text-gray-800 py-2 px-4 rounded-md mb-4'
+            onClick={handleCloseFullScreen}
+          >
+            Close
+          </button>
           <iframe
             src={fullScreenDoodle.url_full_screen}
             title={fullScreenDoodle.title}
+            className='w-full h-full'
           />
         </div>
       )}
-      <div className='filter-container'>
-        <div className='filter-menu'>
-          <label>
+      <div className='flex flex-wrap'>
+        <div className='w-full'>
+          <label
+            htmlFor='visual-complexity-filter'
+            className='block font-medium mb-2'
+          >
             Visual Complexity:
-            <select
-              value={visualComplexityFilter}
-              onChange={(event) =>
-                setVisualComplexityFilter(event.target.value)
-              }
-            >
-              <option value='ALL'>All</option>
-              <option value='LOW'>Low</option>
-              <option value='MEDIUM'>Medium</option>
-              <option value='HIGH'>High</option>
-            </select>
           </label>
+          <select
+            id='visual-complexity-filter'
+            className='py-2 px-4 rounded-md'
+            value={visualComplexityFilter}
+            onChange={(event) => setVisualComplexityFilter(event.target.value)}
+          >
+            <option value='ALL'>All</option>
+            <option value='LOW'>Low</option>
+            <option value='MEDIUM'>Medium</option>
+            <option value='HIGH'>High</option>
+          </select>
         </div>
-        <div className='filter-menu'>
-          <label>
+        <div className='w-full'>
+          <label
+            htmlFor='visual-contrast-filter'
+            className='block font-medium mb-2'
+          >
             Visual Contrast:
-            <select
-              value={visualContrastFilter}
-              onChange={(event) => setVisualContrastFilter(event.target.value)}
-            >
-              <option value='ALL'>All</option>
-              <option value='LOW'>Low</option>
-              <option value='MEDIUM'>Medium</option>
-              <option value='HIGH'>High</option>
-            </select>
           </label>
+          <select
+            id='visual-contrast-filter'
+            className='py-2 px-4 rounded-md'
+            value={visualContrastFilter}
+            onChange={(event) => setVisualContrastFilter(event.target.value)}
+          >
+            <option value='ALL'>All</option>
+            <option value='LOW'>Low</option>
+            <option value='MEDIUM'>Medium</option>
+            <option value='HIGH'>High</option>
+          </select>
         </div>
       </div>
-      <div className='doodles'>
+      <div className='grid grid-cols-3 grid-flow-row gap-4 mt-4'>
         {filteredDoodles.map((doodle, index) => (
           <Doodle
             key={index}

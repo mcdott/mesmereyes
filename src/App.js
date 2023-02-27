@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import NavBar from "./NavBar";
-import Title from "./Title";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 import SamplerSlider from "./SamplerSlider";
 import About from "./About";
 import DoodlesList from "./DoodlesList";
-import "./App.css";
 import doodles from "./doodles-data.json";
 import PlaylistSlider from "./PlaylistSlider";
 import Sidebar from "./Sidebar";
@@ -18,19 +17,22 @@ const App = () => {
   const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (
-    <div className='App'>
-      <NavBar />
-      {isHome && (
-        <>
-          <Title />
-          <Sidebar />
-          <div className='SamplerSlider'>
-            <SamplerSlider slides={sampler} />
+    <div style={{ backgroundColor: "#282c34" }}>
+      <Header />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {location.pathname === "/" && (
+          <div
+            style={{ display: "flex", alignItems: "stretch", margin: "0 20px" }}
+          >
+            <div style={{ width: "200px", height: "100%" }}>
+              <Sidebar />
+            </div>
+            <div style={{ height: "800px", width: "800px" }}>
+              <SamplerSlider slides={sampler} />
+            </div>
           </div>
-        </>
-      )}
-      {!isHome && (
-        <div style={{ width: "1000px", height: "1000px", margin: "0 auto" }}>
+        )}
+        <div style={{ overflow: "auto", height: "100%" }}>
           <Routes>
             <Route path='/about' element={<About />} />
             <Route
@@ -42,7 +44,6 @@ const App = () => {
                 />
               }
             />
-
             <Route
               path='/full_screen_playlist'
               element={
@@ -55,7 +56,7 @@ const App = () => {
             />
           </Routes>
         </div>
-      )}
+      </div>
     </div>
   );
 };

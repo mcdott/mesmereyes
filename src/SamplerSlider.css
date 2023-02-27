@@ -1,4 +1,3 @@
-/* Cover the sketch banner with an overlay */
 .overlayStyles {
   position: absolute;
   top: 0;
@@ -34,6 +33,7 @@
 .sliderStyles {
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 .dotsContainerStyles {

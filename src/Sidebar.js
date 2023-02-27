@@ -4,10 +4,10 @@ import "./Sidebar.css";
 function Sidebar() {
   return (
     <div className='Sidebar'>
-      <h2>art</h2>
-      <h2>to</h2>
-      <h2>play</h2>
-      <h2>with</h2>
+      <div className='word'>art</div>
+      <div className='word'>to</div>
+      <div className='word'>play</div>
+      <div className='word'>with</div>
     </div>
   );
 }
