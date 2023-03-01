@@ -17,8 +17,9 @@ const App = () => {
   const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (
-    <div style={{ backgroundColor: "#282c34" }}>
-      <Header />
+    <div style={{ backgroundColor: "#1A202C" }}>
+      {/* Conditionally render Header component */}
+      {!isPlaylistSlider && <Header />}
       <div style={{ display: "flex", justifyContent: "center" }}>
         {location.pathname === "/" && (
           <div

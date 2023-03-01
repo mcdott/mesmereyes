@@ -1,0 +1,20 @@
+.about {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.about-description {
+  width: 60%;
+  margin: 0 auto;
+  font-size: large;
+  padding: 20px;
+  line-height: 150%;
+}
+
+.about-link {
+  color: #7fdbff;
+}
+
+.about-title {
+  margin-top: 0;
+}
