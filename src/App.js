@@ -7,6 +7,7 @@ import About from "./About";
 import DoodlesList from "./DoodlesList";
 import doodles from "./doodles-data.json";
 import PlaylistSlider from "./PlaylistSlider";
+import "normalize.css";
 
 const App = () => {
   const sampler = doodles.slice(0, 3);
@@ -15,8 +16,9 @@ const App = () => {
   const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (
-    <div style={{ backgroundColor: "#282c34" }}>
-      <Header />
+    <div style={{ backgroundColor: "#1A202C" }}>
+      {/* Conditionally render Header component */}
+      {!isPlaylistSlider && <Header />}
       <div style={{ display: "flex", justifyContent: "center" }}>
         {location.pathname === "/" && (
           <div

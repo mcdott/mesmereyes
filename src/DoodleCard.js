@@ -1,6 +1,7 @@
 import React from "react";
+import "./DoodleCard.css";
 
-function Doodle({
+function DoodleCard({
   doodle,
   onTitleClick,
   onAddToPlaylistClick,
@@ -19,11 +20,17 @@ function Doodle({
         </h3>
         <div className='doodle-actions'>
           {selectedDoodles.includes(doodle) ? (
-            <button onClick={() => onDeleteFromPlaylistClick(doodle)}>
+            <button
+              className='remove-from-playlist'
+              onClick={() => onDeleteFromPlaylistClick(doodle)}
+            >
               Remove from playlist
             </button>
           ) : (
-            <button onClick={() => onAddToPlaylistClick(doodle)}>
+            <button
+              className='add-to-playlist'
+              onClick={() => onAddToPlaylistClick(doodle)}
+            >
               Add to playlist
             </button>
           )}
@@ -33,4 +40,4 @@ function Doodle({
   );
 }
 
-export default Doodle;
+export default DoodleCard;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DoodlesList.css";
-import Doodle from "./Doodle";
+import DoodleCard from "./DoodleCard";
 
 function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
   const [visualComplexityFilter, setVisualComplexityFilter] = useState("ALL");
@@ -91,7 +91,7 @@ function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
       </div>
       <div className='doodles'>
         {filteredDoodles.map((doodle, index) => (
-          <Doodle
+          <DoodleCard
             key={index}
             doodle={doodle}
             onTitleClick={handleTitleClick}
