@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./DoodlesList.css";
+import Doodle from "./Doodle";
 
-function DoodlesList() {
+function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
   const [visualComplexityFilter, setVisualComplexityFilter] = useState("ALL");
   const [visualContrastFilter, setVisualContrastFilter] = useState("ALL");
   const [doodles, setDoodles] = useState([]);
+  const [fullScreenDoodle, setFullScreenDoodle] = useState(null);
 
   useEffect(() => {
     // Get the doodles data and set it to the component state
@@ -25,8 +27,33 @@ function DoodlesList() {
     );
   }
 
+  const handleTitleClick = (doodle) => {
+    setFullScreenDoodle(doodle);
+  };
+
+  const handleCloseFullScreen = () => {
+    setFullScreenDoodle(null);
+  };
+
+  const handleAddToPlaylist = (doodle) => {
+    setSelectedDoodles([...selectedDoodles, doodle]);
+  };
+
+  const handleDeleteFromPlaylist = (doodle) => {
+    const newSelectedDoodles = selectedDoodles.filter(
+      (selectedDoodle) => selectedDoodle !== doodle
+    );
+    setSelectedDoodles(newSelectedDoodles);
+  };
+
   return (
     <div>
+      {fullScreenDoodle && (
+        <div className='full-screen'>
+          <button onClick={handleCloseFullScreen}>Close</button>
+          <iframe src={fullScreenDoodle.url} title={fullScreenDoodle.title} />
+        </div>
+      )}
       <div className='filter-container'>
         <div className='filter-menu'>
           <label>
@@ -59,17 +86,25 @@ function DoodlesList() {
           </label>
         </div>
       </div>
+      {fullScreenDoodle && (
+        <div className='full-screen'>
+          <button onClick={handleCloseFullScreen}>Close</button>
+          <iframe
+            src={fullScreenDoodle.url_full_screen}
+            title={fullScreenDoodle.title}
+          />
+        </div>
+      )}
       <div className='doodles'>
         {filteredDoodles.map((doodle, index) => (
-          <div key={index}>
-            <h2>{doodle.title}</h2>
-            <iframe
-              src={doodle.url}
-              title={doodle.title}
-              width='100%'
-              height='100%'
-            ></iframe>
-          </div>
+          <Doodle
+            key={index}
+            doodle={doodle}
+            onTitleClick={handleTitleClick}
+            onAddToPlaylistClick={handleAddToPlaylist}
+            onDeleteFromPlaylistClick={handleDeleteFromPlaylist}
+            selectedDoodles={selectedDoodles}
+          />
         ))}
       </div>
     </div>
