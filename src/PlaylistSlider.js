@@ -21,6 +21,16 @@ const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
     };
   }, [isFullScreen]);
 
+  useEffect(() => {
+    const handleFullScreenChange = () => {
+      setIsFullScreen(document.fullscreenElement != null);
+    };
+    document.addEventListener("fullscreenchange", handleFullScreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullScreenChange);
+    };
+  }, []);
+
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
@@ -38,12 +48,6 @@ const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
   const handleFullScreen = () => {
     const elem = document.documentElement;
     elem.requestFullscreen();
-    setIsFullScreen(true);
-  };
-
-  const handleExitFullScreen = () => {
-    document.exitFullscreen();
-    setIsFullScreen(false);
   };
 
   const handleBackToDoodles = () => {
@@ -61,8 +65,12 @@ const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
     <>
       {!isFullScreen && (
         <div>
-          <button onClick={handleBackToDoodles}>Back to Doodles</button>
-          <button onClick={handleFullScreen}>Enter Full Screen</button>
+          <button className='back-to-doodles' onClick={handleBackToDoodles}>
+            Back to Doodles
+          </button>
+          <button className='enter-full-screen' onClick={handleFullScreen}>
+            Enter Full Screen
+          </button>
         </div>
       )}
       <div className='full-screen-slider'>
