@@ -34,8 +34,9 @@
 }
 
 .back-to-doodles {
-  background-color: purple;
-  color: white;
+  /* background-color: purple;
+  color: white; */
+  color: black
   padding: 10px 24px;
   margin-right: 10px;
 }
