@@ -1,25 +1,55 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./Header";
-import DoodleSlider from "./DoodleSlider";
+import SamplerSlider from "./SamplerSlider";
 import About from "./About";
+import DoodlesList from "./DoodlesList";
 import "./App.css";
-import slides from "./slides-data.json";
+import doodles from "./doodles-data.json";
+import PlaylistSlider from "./PlaylistSlider";
 
 const App = () => {
-  const containerStyles = {
-    width: "800px",
-    height: "800px",
-    margin: "0 auto",
-  };
+  const sampler = doodles.slice(0, 3);
+  const location = useLocation();
+  const isPlaylistSlider = location.pathname === "/full_screen_playlist";
+  const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (
     <div className='App'>
-      <Header />
-      <div style={containerStyles}>
+      {!isPlaylistSlider && <Header />}
+      <div>
         <Routes>
-          <Route path='/' element={<DoodleSlider slides={slides} />} />
+          <Route
+            path='/'
+            element={
+              <div
+                style={{ width: "800px", height: "800px", margin: "0 auto" }}
+              >
+                <SamplerSlider slides={sampler} />
+              </div>
+            }
+          />
           <Route path='/about' element={<About />} />
+          <Route
+            path='/doodles'
+            element={
+              <DoodlesList
+                selectedDoodles={selectedDoodles}
+                setSelectedDoodles={setSelectedDoodles}
+              />
+            }
+          />
+
+          <Route
+            path='/full_screen_playlist'
+            element={
+              <PlaylistSlider
+                slides={selectedDoodles}
+                selectedDoodles={selectedDoodles}
+                setSelectedDoodles={setSelectedDoodles}
+              />
+            }
+          />
         </Routes>
       </div>
     </div>
@@ -27,9 +57,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* <div style={containerStyles}>
-{slides.length > 0 && <DoodleSlider slides={slides} />}
-</div> */
-}
