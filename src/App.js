@@ -1,44 +1,56 @@
-import { Outlet } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./Header";
-import SketchSlider from "./SketchSlider";
+import SamplerSlider from "./SamplerSlider";
+import About from "./About";
+import DoodlesList from "./DoodlesList";
 import "./App.css";
+import doodles from "./doodles-data.json";
+import PlaylistSlider from "./PlaylistSlider";
 
 const App = () => {
-  const slides = [
-    {
-      url: "https://openprocessing.org/sketch/1554172/embed/",
-      title: "Sine Wobbler",
-    },
-    {
-      url: "https://openprocessing.org/sketch/1744394/embed/",
-      title: "1744394",
-    },
-    {
-      url: "https://openprocessing.org/sketch/1619381/embed/",
-      title: "forest",
-    },
-    {
-      url: "https://openprocessing.org/sketch/1620516/embed/",
-      title: "Blob Soup",
-    },
-    {
-      url: "https://openprocessing.org/sketch/1555443/embed/",
-      title: "Interactive Blob",
-    },
-  ];
-  const containerStyles = {
-    width: "800px",
-    height: "800px",
-    // width: "1000px",
-    // height: "560px",
-    margin: "0 auto",
-  };
+  const sampler = doodles.slice(0, 3);
+  const location = useLocation();
+  const isPlaylistSlider = location.pathname === "/full_screen_playlist";
+  const [selectedDoodles, setSelectedDoodles] = useState([]);
+
   return (
     <div className='App'>
-      <Header />
-      <div style={containerStyles}>
-        <SketchSlider slides={slides} />
+      {!isPlaylistSlider && <Header />}
+      <div>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <div
+                style={{ width: "800px", height: "800px", margin: "0 auto" }}
+              >
+                <SamplerSlider slides={sampler} />
+              </div>
+            }
+          />
+          <Route path='/about' element={<About />} />
+          <Route
+            path='/doodles'
+            element={
+              <DoodlesList
+                selectedDoodles={selectedDoodles}
+                setSelectedDoodles={setSelectedDoodles}
+              />
+            }
+          />
+
+          <Route
+            path='/full_screen_playlist'
+            element={
+              <PlaylistSlider
+                slides={selectedDoodles}
+                selectedDoodles={selectedDoodles}
+                setSelectedDoodles={setSelectedDoodles}
+              />
+            }
+          />
+        </Routes>
       </div>
     </div>
   );

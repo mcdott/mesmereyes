@@ -1,9 +1,9 @@
 // SketchSlider.js
 import React from "react";
 import { useState } from "react";
-import "./SketchSlider.css";
+import "./SamplerSlider.css";
 
-const SketchSlider = ({ slides }) => {
+const SamplerSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -32,7 +32,7 @@ const SketchSlider = ({ slides }) => {
       <div className='overlayStyles'></div>
       <iframe
         title={slides[currentIndex].title}
-        src={slides[currentIndex].url}
+        src={slides[currentIndex].url_embed}
         width='100%'
         height='100%'
       />
@@ -51,4 +51,4 @@ const SketchSlider = ({ slides }) => {
   );
 };
 
-export default SketchSlider;
+export default SamplerSlider;
