@@ -69,7 +69,7 @@ const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
             Back to Doodles
           </button>
           <button className='enter-full-screen' onClick={handleFullScreen}>
-            Enter Full Screen
+            Full Screen
           </button>
         </div>
       )}

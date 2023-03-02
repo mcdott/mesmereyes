@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./FullScreenIframe.css";
 
 const FullScreenIframe = ({ url, goToPrevious, goToNext }) => {
   useEffect(() => {
@@ -31,14 +32,37 @@ const FullScreenIframe = ({ url, goToPrevious, goToNext }) => {
           transform: "translateY(-50%)",
         }}
       >
-        <div onClick={goToPrevious} className='leftArrowStyles'>
-          ❰
-        </div>
-        <div onClick={goToNext} className='rightArrowStyles'>
-          ❱
-        </div>
+        <button
+          onClick={goToPrevious}
+          className='fullScreenLeftButtonStyles'
+          aria-label='Previous'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='50'
+            height='50'
+            viewBox='0 0 24 24'
+          >
+            <path d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' />
+          </svg>
+        </button>
+        <button
+          onClick={goToNext}
+          className='fullScreenRightButtonStyles'
+          aria-label='Next'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='50'
+            height='50'
+            viewBox='0 0 24 24'
+          >
+            <path d='M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z' />
+          </svg>
+        </button>
       </div>
     </div>
   );
 };
+
 export default FullScreenIframe;
