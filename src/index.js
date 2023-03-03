@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { Helmet } from "react-helmet";
 
-import App from "./App";
+import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
 

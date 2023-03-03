@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DoodlesList.css";
-import DoodleCard from "./DoodleCard";
+import DoodleCard from "../DoodleCard/DoodleCard";
 
 function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
   const [visualComplexityFilter, setVisualComplexityFilter] = useState("ALL");
@@ -10,7 +10,7 @@ function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
 
   useEffect(() => {
     // Get the doodles data and set it to the component state
-    const doodlesData = require("./doodles-data.json");
+    const doodlesData = require("../../doodles-data.json");
     setDoodles(doodlesData);
   }, []);
 

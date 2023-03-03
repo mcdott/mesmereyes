@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import SamplerSlider from "./SamplerSlider";
-import About from "./About";
-import DoodlesList from "./DoodlesList";
-import doodles from "./doodles-data.json";
-import PlaylistSlider from "./PlaylistSlider";
-import Sidebar from "./Sidebar";
+import Header from "./Header/Header";
+import Sidebar from "./Sidebar/Sidebar";
+import SamplerSlider from "./SamplerSlider/SamplerSlider";
+import About from "./About/About";
+import DoodlesList from "./DoodlesList/DoodlesList";
+import doodles from "../doodles-data.json";
+import PlaylistSlider from "./PlaylistSlider/PlaylistSlider";
+import "normalize.css";
 
 const App = () => {
   const sampler = doodles.slice(0, 3);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-
+  const isPlaylistSlider = location.pathname === "/full_screen_playlist";
   const [selectedDoodles, setSelectedDoodles] = useState([]);
 
   return (

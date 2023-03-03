@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import FullScreenIframe from "./FullScreenIframe";
+import FullScreenIframe from "../FullScreenIframe/FullScreenIframe";
 
 const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
   const navigate = useNavigate();
@@ -41,9 +41,9 @@ const PlaylistSlider = ({ slides, selectedDoodles, setSelectedDoodles }) => {
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
+  // const goToSlide = (slideIndex) => {
+  //   setCurrentIndex(slideIndex);
+  // };
 
   const handleFullScreen = () => {
     const elem = document.documentElement;
