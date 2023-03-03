@@ -30,17 +30,6 @@ header {
   }
 }
 
-.doodle {
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  transition: all 0.2s;
-}
-
-.doodle:hover {
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
-}
-
 @media screen and (max-width: 768px) {
   .doodles {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
