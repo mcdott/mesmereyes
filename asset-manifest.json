@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mesmereyes/static/css/main.8e94b370.css",
+    "main.js": "/mesmereyes/static/js/main.cf258d4a.js",
+    "static/js/787.a3d8cc8f.chunk.js": "/mesmereyes/static/js/787.a3d8cc8f.chunk.js",
+    "index.html": "/mesmereyes/index.html",
+    "main.8e94b370.css.map": "/mesmereyes/static/css/main.8e94b370.css.map",
+    "main.cf258d4a.js.map": "/mesmereyes/static/js/main.cf258d4a.js.map",
+    "787.a3d8cc8f.chunk.js.map": "/mesmereyes/static/js/787.a3d8cc8f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8e94b370.css",
+    "static/js/main.cf258d4a.js"
+  ]
+}
