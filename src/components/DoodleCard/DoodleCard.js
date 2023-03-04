@@ -3,7 +3,7 @@ import "./DoodleCard.css";
 
 function DoodleCard({
   doodle,
-  onTitleClick,
+  // onTitleClick,
   onAddToPlaylistClick,
   onDeleteFromPlaylistClick,
   selectedDoodles,
@@ -15,9 +15,9 @@ function DoodleCard({
       </div>
 
       <div className='doodle-info'>
-        <h3 className='doodle-title' onClick={() => onTitleClick(doodle)}>
+        {/* <h3 className='doodle-title' onClick={() => onTitleClick(doodle)}>
           {doodle.title}
-        </h3>
+        </h3> */}
         <div className='doodle-actions'>
           {selectedDoodles.includes(doodle) ? (
             <button

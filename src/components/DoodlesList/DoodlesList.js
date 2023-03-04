@@ -27,9 +27,9 @@ function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
     );
   }
 
-  const handleTitleClick = (doodle) => {
-    setFullScreenDoodle(doodle);
-  };
+  // const handleTitleClick = (doodle) => {
+  //   setFullScreenDoodle(doodle);
+  // };
 
   const handleCloseFullScreen = () => {
     setFullScreenDoodle(null);
@@ -94,7 +94,7 @@ function DoodlesList({ selectedDoodles, setSelectedDoodles }) {
           <DoodleCard
             key={index}
             doodle={doodle}
-            onTitleClick={handleTitleClick}
+            // onTitleClick={handleTitleClick}
             onAddToPlaylistClick={handleAddToPlaylist}
             onDeleteFromPlaylistClick={handleDeleteFromPlaylist}
             selectedDoodles={selectedDoodles}
