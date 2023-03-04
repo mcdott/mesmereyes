@@ -17,7 +17,7 @@ function About() {
         </a>{" "}
         community. These errorless, cause and effect activities have been chosen
         as particularly suitable for playful exploration by users who access a
-        computer via eye gaze and/or switch.
+        computer via eye gaze.
       </p>
     </div>
   );
